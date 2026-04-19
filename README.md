@@ -66,16 +66,28 @@ O projeto já inclui o workflow em `.github/workflows/playwright.yml`. Ele é di
 4. Instala os browsers do Playwright com dependências do sistema
 5. Executa todos os testes (108 testes × 3 browsers)
 6. Publica o relatório HTML como artefato (retido por 30 dias)
+7. **Publica o relatório no GitHub Pages** (apenas em pushes para `main`/`master`)
 
-### Como ativar
+### Ativando o GitHub Pages
 
-Basta garantir que o arquivo `.github/workflows/playwright.yml` esteja no repositório e fazer push para `main` ou abrir um pull request. O workflow roda automaticamente sem configuração adicional.
+Para que o relatório seja publicado automaticamente no GitHub Pages, é necessário habilitar o recurso uma única vez no repositório:
 
-Para acessar o relatório após uma execução no GitHub:
+1. Vá em **Settings** → **Pages** no seu repositório
+2. Em **Source**, selecione **GitHub Actions**
+3. Salve — nenhuma outra configuração é necessária
 
-1. Vá em **Actions** no repositório
-2. Clique na execução desejada
-3. Na seção **Artifacts**, baixe `playwright-report`
+Após o próximo push para `main`, o relatório ficará disponível em:
+
+```
+https://<seu-usuario>.github.io/<nome-do-repositorio>/
+```
+
+> O Pages só é publicado em pushes diretos para `main`/`master`. Pull requests executam os testes mas não atualizam o Pages.
+
+### Acessando o relatório no GitHub
+
+- **GitHub Pages**: URL pública gerada automaticamente após cada push (conforme acima)
+- **Artefato**: vá em **Actions** → clique na execução → seção **Artifacts** → baixe `playwright-report`
 
 ### Configurações de CI no `playwright.config.ts`
 
